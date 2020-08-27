@@ -3,7 +3,9 @@ package quiztastic.app;
 import org.junit.jupiter.api.Test;
 import quiztastic.core.Question;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
 import java.nio.file.Files;
@@ -12,6 +14,7 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionReaderTest {
+
 
     @Test
     void shouldReadSingleQuestion() {
@@ -40,6 +43,13 @@ class QuestionReaderTest {
         }
 
         assertEquals(13, count);
+    }
+
+    @Test
+    void shouldSetBufferedReader(){
+        BufferedReader x = new BufferedReader(new StringReader("Hello, World!\nOther Line"));
+        QuestionReader a = new QuestionReader(x);
+        assertEquals(x, a.getUnderlyingReader());
     }
 
 }

@@ -6,4 +6,6 @@ package quiztastic.core;
  * Should contain information about the questions
  */
 public class Question {
+
+    //points, category, question, answer
 }

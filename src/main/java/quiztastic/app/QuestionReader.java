@@ -20,7 +20,11 @@ public class QuestionReader {
     }
 
     public Question readQuestion() {
-       throw new UnsupportedOperationException("Not yet implemented");
+        return null;
+    }
+
+    public BufferedReader getUnderlyingReader() {
+        return reader;
     }
 
 }
