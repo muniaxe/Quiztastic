@@ -3,6 +3,7 @@ package quiztastic.app;
 import quiztastic.core.Question;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.Reader;
 
 /**
@@ -19,8 +20,23 @@ public class QuestionReader {
         this(new BufferedReader(reader));
     }
 
-    public Question readQuestion() {
-        return null;
+    public Question readQuestion() throws IOException {
+        String line = reader.readLine();
+        if (line == null){
+            return null;
+        }
+
+        String[] questionData = line.split("\t");
+        if(questionData.length != 4){
+            return null;
+        }
+
+        int score = Integer.parseInt(questionData[0]);
+        String category = questionData[1];
+        String question = questionData[2];
+        String answer = questionData[3];
+
+        return new Question(score,category,question,answer);
     }
 
     public BufferedReader getUnderlyingReader() {

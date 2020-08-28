@@ -17,12 +17,15 @@ class QuestionReaderTest {
 
 
     @Test
-    void shouldReadSingleQuestion() {
+    void shouldReadSingleQuestion() throws IOException {
         String questionText = "100\tLAKES & RIVERS\tRiver mentioned most often in the Bible\tthe Jordan\n";
         QuestionReader reader = new QuestionReader(new StringReader(questionText));
         Question q = reader.readQuestion();
         assertNotNull(q);
-        // Insert more tests
+        assertEquals(q.getScore(), 100);
+        assertEquals(q.getCategory(), "LAKES & RIVERS");
+        assertEquals(q.getQuestion(), "River mentioned most often in the Bible");
+        assertEquals(q.getAnswer(), "the Jordan");
         Question end = reader.readQuestion();
         assertNull(end);
     }
@@ -51,5 +54,6 @@ class QuestionReaderTest {
         QuestionReader a = new QuestionReader(x);
         assertEquals(x, a.getUnderlyingReader());
     }
+
 
 }
