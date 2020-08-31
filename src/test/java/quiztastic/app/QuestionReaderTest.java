@@ -1,6 +1,7 @@
 package quiztastic.app;
 
 import org.junit.jupiter.api.Test;
+import quiztastic.core.Category;
 import quiztastic.core.Question;
 
 import java.io.*;
@@ -21,7 +22,7 @@ class QuestionReaderTest {
         Question q = reader.readQuestion();
         assertNotNull(q);
         assertEquals(100, q.getScore());
-        assertEquals("LAKES & RIVERS", q.getCategory());
+        assertEquals(new Category("LAKES & RIVERS"), q.getCategory());
         assertEquals("River mentioned most often in the Bible", q.getQuestion());
         assertEquals("the Jordan", q.getAnswer());
         Question end = reader.readQuestion();

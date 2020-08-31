@@ -1,5 +1,6 @@
 package quiztastic.app;
 
+import quiztastic.core.Category;
 import quiztastic.core.Question;
 
 import java.io.BufferedReader;
@@ -32,16 +33,18 @@ public class QuestionReader {
             if (fields.length != 4) {
                 throw new ParseException("Expected 4 fields, got " + fields.length, lineCounter);
             }
+            int score;
             try {
-                int score = Integer.parseInt(fields[0]);
-                String category = fields[1];
-                String question = fields[2];
-                String answer = fields[3];
-
-                return new Question(score, category, question, answer);
+                score = Integer.parseInt(fields[0]);
             } catch (NumberFormatException e) {
                 throw new ParseException("Expected int in field 1, but received \"" + fields[0] + "\"", lineCounter);
             }
+            Category category = new Category(fields[1]);
+            String question = fields[2];
+            String answer = fields[3];
+            return new Question(score, category, question, answer);
+
+
         }
 
 
