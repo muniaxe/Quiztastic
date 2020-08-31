@@ -11,6 +11,12 @@ public class Category {
 
     public Category(String name) {
         this.name = name;
+        if (name == null)
+            throw new NullPointerException();
+
+        if (name.equals(""))
+            throw new IllegalArgumentException("The name should not be empty");
+
     }
 
     @Override
